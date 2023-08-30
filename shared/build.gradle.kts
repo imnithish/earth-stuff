@@ -2,6 +2,7 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("org.jetbrains.compose")
+    id("com.apollographql.apollo3")
 }
 
 kotlin {
@@ -24,8 +25,19 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)
+                implementation(compose.animation)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+
+                api("com.apollographql.apollo3:apollo-runtime:3.8.2")
+                api("com.apollographql.apollo3:apollo-normalized-cache:3.8.2")
+
+                api("io.insert-koin:koin-core:3.4.3")
+                api("io.insert-koin:koin-compose:1.0.4")
+
+                api("moe.tlaster:precompose:1.5.0")
+                api("moe.tlaster:precompose-viewmodel:1.5.0")
+                api("moe.tlaster:precompose-koin:1.5.0")
             }
         }
         val androidMain by getting {
@@ -59,10 +71,16 @@ android {
         minSdk = (findProperty("android.minSdk") as String).toInt()
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlin {
-        jvmToolchain(11)
+        jvmToolchain(17)
+    }
+}
+
+apollo {
+    service("service") {
+        packageName.set("dev.imn.earth")
     }
 }
