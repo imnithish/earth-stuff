@@ -20,7 +20,7 @@ This project covers most of the architectural patterns. It won't do anything stu
 
 ## 📄 Project Documentation
 
-Check out this [Medium article](https://medium.com/@nitheeshag/navigation-in-jetpack-compose-with-animations-724037d7b119) that i somehow wrote despite being a lazy ass.
+Check out this [Medium article](https://medium.com/@nitheeshag/building-a-compose-multiplatform-app-with-an-architectural-pattern-e31a85e82927) that i somehow wrote despite being a lazy ass.
 
 > **Note**
 > For getting started with Compose Multiplatform, mind going through this Jetbrains' provided [template](https://github.com/JetBrains/compose-multiplatform-ios-android-template).
