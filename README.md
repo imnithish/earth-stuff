@@ -1,14 +1,14 @@
 # earth stuff 🌎, a [Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/) project
 
-This project covers most of the architectural patters. That's it 😁.
+This project covers most of the architectural patters. It won't do anything stupid usefully.
 
 ## What all covered?
 
-* MVVM
-* Navigation
-* Dependency Injection
-* GraphQL
-* Theming with Material Design
+* MVVM ✅
+* Navigation ✅
+* Dependency Injection ✅
+* GraphQL ✅
+* Theming with Material Design ✅
 
 ## Libraries used that are worth mentioning 🙃
 
@@ -16,9 +16,15 @@ This project covers most of the architectural patters. That's it 😁.
 * [Koin](https://insert-koin.io/) for Dependency Injection.
 * [Apollo Kotlin](https://www.apollographql.com/docs/kotlin/) for GraphQL
 
-## Libraries used that are worth mentioning 🙃
+## 📄 Project Documentation
 
 Check out this [Medium article](https://medium.com/@nitheeshag/navigation-in-jetpack-compose-with-animations-724037d7b119) that i somehow wrote despite being a lazy ass.
 
 > **Note**
-> For getting started, go through this Jetbrains' provided [documentation](https://github.com/imnithish/earth-stuff/blob/main/README_GET_STARTED.md).
+> For getting started with Compose Multiplatform, mind going through this Jetbrains' provided [documentation](https://github.com/imnithish/earth-stuff/blob/main/README_GET_STARTED.md).
+
+### TODO
+
+* Support for Desktop - Windows, MacOS, Linux ❌
+* Support for Web ❌
+
