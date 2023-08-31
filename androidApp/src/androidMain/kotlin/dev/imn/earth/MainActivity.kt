@@ -1,4 +1,4 @@
-package com.myapplication
+package dev.imn.earth
 
 import MainView
 import android.os.Bundle

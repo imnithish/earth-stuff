@@ -5,6 +5,7 @@ import moe.tlaster.precompose.navigation.path
 import moe.tlaster.precompose.navigation.rememberNavigator
 import moe.tlaster.precompose.navigation.transition.NavTransition
 import screen.continents.ContinentsScreen
+import screen.continents.ContinentsViewModel
 import screen.countries.CountriesScreen
 
 @Composable
@@ -19,7 +20,8 @@ fun Nav() {
             route = "/continents",
             navTransition = NavTransition(),
         ) {
-            ContinentsScreen(koinViewModel()) {
+            val vm = koinViewModel(ContinentsViewModel::class)
+            ContinentsScreen(vm) {
                 navigator.navigate("/countries/$it")
             }
         }

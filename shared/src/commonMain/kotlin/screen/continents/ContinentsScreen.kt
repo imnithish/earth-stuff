@@ -11,7 +11,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedButton
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -34,40 +36,47 @@ fun ContinentsScreen(viewModel: ContinentsViewModel, onNavigate: (String) -> Uni
         viewModel.attemptContinentsQuery()
     }
 
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-
-        AnimatedVisibility(uiState.isLoading) {
-            CircularProgressIndicator()
+    Scaffold(
+        topBar = {
+            TopAppBar(title = {
+                Text("Continents \uD83C\uDF0D\uD83C\uDF0F\uD83C\uDF0E")
+            })
         }
+    ) {
+        Box(Modifier.fillMaxSize().padding(it), contentAlignment = Alignment.Center) {
 
-        AnimatedVisibility(uiState.error != UIErrorType.Nothing) {
-            ErrorLayout(uiState.error, viewModel::attemptContinentsQuery)
-        }
+            AnimatedVisibility(uiState.isLoading) {
+                CircularProgressIndicator()
+            }
 
-        AnimatedVisibility(uiState.continents.isNotEmpty()) {
-            FlowRow(
-                modifier = Modifier.padding(16.dp),
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
-            ) {
+            AnimatedVisibility(uiState.error != UIErrorType.Nothing) {
+                ErrorLayout(uiState.error, viewModel::attemptContinentsQuery)
+            }
 
-                uiState.continents.forEach {
-                    OutlinedButton(
-                        shape = RoundedCornerShape(16.dp),
-                        onClick = {
-                            onNavigate(it.code)
+            AnimatedVisibility(uiState.continents.isNotEmpty()) {
+                FlowRow(
+                    modifier = Modifier.padding(16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
+                ) {
+
+                    uiState.continents.forEach {
+                        OutlinedButton(
+                            shape = RoundedCornerShape(16.dp),
+                            onClick = {
+                                onNavigate(it.code)
+                            }
+                        ) {
+                            Text(
+                                "${it.name}\n${it.code}",
+                                color = Color.Black,
+                                textAlign = TextAlign.Center
+                            )
                         }
-                    ) {
-                        Text(
-                            "${it.name}\n${it.code}",
-                            color = Color.Black,
-                            textAlign = TextAlign.Center
-                        )
                     }
                 }
             }
         }
     }
-
 
 }
