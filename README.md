@@ -27,5 +27,4 @@ Check out this [Medium article](https://medium.com/@nitheeshag/navigation-in-jet
 
 * Support for Desktop - Windows, MacOS, Linux ❌
 * Support for Web ❌
-tes
 
