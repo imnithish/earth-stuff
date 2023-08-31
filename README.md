@@ -1,6 +1,6 @@
 # earth stuff 🌎, a [Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/) project
 
-This project covers most of the architectural patters. It won't do anything stupid usefully.
+This project covers most of the architectural patterns. It won't do anything stupid usefully.
 
 ![](readme_images/ss.png)
 
