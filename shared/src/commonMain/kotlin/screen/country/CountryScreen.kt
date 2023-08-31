@@ -255,32 +255,34 @@ fun CountryScreen(
                             }
                         }
 
-                        item {
-                            StuffButton(
-                                "States",
-                                colors = ButtonDefaults.outlinedButtonColors(
-                                    backgroundColor = MaterialTheme.colors.primaryVariant
-                                )
-                            ) {
-                                scope.launch {
-                                    viewModel.setCurrentBottomSheet(CurrentBottomSheetContent.STATES)
-                                    scaffoldState.bottomSheetState.expand()
+                        if (!uiState.data?.states.isNullOrEmpty())
+                            item {
+                                StuffButton(
+                                    "States",
+                                    colors = ButtonDefaults.outlinedButtonColors(
+                                        backgroundColor = MaterialTheme.colors.primaryVariant
+                                    )
+                                ) {
+                                    scope.launch {
+                                        viewModel.setCurrentBottomSheet(CurrentBottomSheetContent.STATES)
+                                        scaffoldState.bottomSheetState.expand()
+                                    }
                                 }
                             }
-                        }
 
-                        item {
-                            StuffButton(
-                                "Languages", colors = ButtonDefaults.outlinedButtonColors(
-                                    backgroundColor = MaterialTheme.colors.primaryVariant
-                                )
-                            ) {
-                                scope.launch {
-                                    viewModel.setCurrentBottomSheet(CurrentBottomSheetContent.LANGUAGES)
-                                    scaffoldState.bottomSheetState.expand()
+                        if (!uiState.data?.languages.isNullOrEmpty())
+                            item {
+                                StuffButton(
+                                    "Languages", colors = ButtonDefaults.outlinedButtonColors(
+                                        backgroundColor = MaterialTheme.colors.primaryVariant
+                                    )
+                                ) {
+                                    scope.launch {
+                                        viewModel.setCurrentBottomSheet(CurrentBottomSheetContent.LANGUAGES)
+                                        scaffoldState.bottomSheetState.expand()
+                                    }
                                 }
                             }
-                        }
                     }
                 }
             }
