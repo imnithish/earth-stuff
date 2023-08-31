@@ -2,7 +2,7 @@
 
 This project covers most of the architectural patterns. It won't do anything stupid usefully.
 
-![](readme_images/ss.png)
+![](readme_images/ss.jpg)
 
 ## What all covered?
 
