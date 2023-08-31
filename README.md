@@ -2,6 +2,8 @@
 
 This project covers most of the architectural patters. It won't do anything stupid usefully.
 
+![](readme_images/ss.png)
+
 ## What all covered?
 
 * MVVM ✅
