@@ -1,11 +1,16 @@
 package screen.continents
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.CircularProgressIndicator
@@ -24,6 +29,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import common.ErrorLayout
+import common.StuffButton
+import common.StuffTopAppBar
 import util.UIErrorType
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -36,47 +43,52 @@ fun ContinentsScreen(viewModel: ContinentsViewModel, onNavigate: (String) -> Uni
         viewModel.attemptContinentsQuery()
     }
 
-    Scaffold(
-        topBar = {
-            TopAppBar(title = {
-                Text("Continents \uD83C\uDF0D\uD83C\uDF0F\uD83C\uDF0E")
-            })
+    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+
+        AnimatedVisibility(
+            uiState.isLoading,
+            enter = fadeIn(),
+            exit = fadeOut()
+        ) {
+            CircularProgressIndicator()
         }
-    ) {
-        Box(Modifier.fillMaxSize().padding(it), contentAlignment = Alignment.Center) {
 
-            AnimatedVisibility(uiState.isLoading) {
-                CircularProgressIndicator()
-            }
+        AnimatedVisibility(
+            uiState.error != UIErrorType.Nothing,
+            enter = fadeIn(),
+            exit = fadeOut()
+        ) {
+            ErrorLayout(uiState.error, viewModel::attemptContinentsQuery)
+        }
 
-            AnimatedVisibility(uiState.error != UIErrorType.Nothing) {
-                ErrorLayout(uiState.error, viewModel::attemptContinentsQuery)
-            }
+        AnimatedVisibility(
+            uiState.continents.isNotEmpty(),
+            enter = fadeIn(),
+            exit = fadeOut()
+        ) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
-            AnimatedVisibility(uiState.continents.isNotEmpty()) {
+                Text(
+                    "Continents \uD83C\uDF0E",
+                    style = MaterialTheme.typography.h4,
+                    textAlign = TextAlign.Center
+                )
+                Spacer(Modifier.height(32.dp))
                 FlowRow(
                     modifier = Modifier.padding(16.dp),
                     horizontalArrangement = Arrangement.spacedBy(16.dp),
                     verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
                 ) {
-
                     uiState.continents.forEach {
-                        OutlinedButton(
-                            shape = RoundedCornerShape(16.dp),
-                            onClick = {
-                                onNavigate(it.code)
-                            }
-                        ) {
-                            Text(
-                                "${it.name}\n${it.code}",
-                                color = Color.Black,
-                                textAlign = TextAlign.Center
-                            )
+                        StuffButton(text = "${it.name}\n${it.code}") {
+                            onNavigate(it.code)
                         }
                     }
                 }
             }
+
         }
     }
+
 
 }

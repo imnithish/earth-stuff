@@ -9,6 +9,8 @@ import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import screen.continents.ContinentsViewModel
 import screen.continents.data.ContinentsRepository
+import screen.countries.CountriesViewModel
+import screen.countries.data.CountriesRepository
 
 fun initKoin() {
     startKoin {
@@ -22,7 +24,9 @@ fun initKoin() {
                 }
                 single<CountriesAPI> { CountriesAPIImpl(get()) }
                 single { ContinentsRepository(get()) }
+                single { CountriesRepository(get()) }
                 factory { ContinentsViewModel(get()) }
+                factory { CountriesViewModel(get()) }
             }
         )
     }

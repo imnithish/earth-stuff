@@ -7,6 +7,7 @@ import moe.tlaster.precompose.navigation.transition.NavTransition
 import screen.continents.ContinentsScreen
 import screen.continents.ContinentsViewModel
 import screen.countries.CountriesScreen
+import screen.countries.CountriesViewModel
 
 @Composable
 fun Nav() {
@@ -27,8 +28,11 @@ fun Nav() {
         }
 
         scene(route = "/countries/{id}?") { backStackEntry ->
+            val vm = koinViewModel(CountriesViewModel::class)
             val code: String? = backStackEntry.path<String>("id")
-            CountriesScreen(code)
+            CountriesScreen(code = code, viewModel = vm, onBackPress = {
+                navigator.goBack()
+            })
         }
     }
 }

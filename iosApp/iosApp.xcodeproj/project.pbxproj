@@ -11,6 +11,7 @@
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		C69100AC2AA06290000A7311 /* sailec_regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C69100A92AA0628F000A7311 /* sailec_regular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB3632DC29227652001CCB65 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		C69100A92AA0628F000A7311 /* sailec_regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sailec_regular.otf; path = ../../shared/src/main/res/font/sailec_regular.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,9 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				C69100AA2AA06290000A7311 /* sailec_bold.otf */,
+				C69100A82AA0628F000A7311 /* sailec_medium.otf */,
+				C69100A92AA0628F000A7311 /* sailec_regular.otf */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
@@ -148,6 +153,9 @@
 			files = (
 				058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */,
 				058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */,
+				C69100AB2AA06290000A7311 /* sailec_medium.otf in Resources */,
+				C69100AD2AA06290000A7311 /* sailec_bold.otf in Resources */,
+				C69100AC2AA06290000A7311 /* sailec_regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
