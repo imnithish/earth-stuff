@@ -1,4 +1,4 @@
-# earth stuff 🌎, a [Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform) project
+# earth stuff 🌎, a [Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/) project
 
 This project covers most of the architectural patters. That's it 😁.
 
