@@ -11,6 +11,8 @@ import screen.continents.ContinentsViewModel
 import screen.continents.data.ContinentsRepository
 import screen.countries.CountriesViewModel
 import screen.countries.data.CountriesRepository
+import screen.country.CountryViewModel
+import screen.country.data.CountryRepository
 
 fun initKoin() {
     startKoin {
@@ -25,8 +27,10 @@ fun initKoin() {
                 single<CountriesAPI> { CountriesAPIImpl(get()) }
                 single { ContinentsRepository(get()) }
                 single { CountriesRepository(get()) }
+                single { CountryRepository(get()) }
                 factory { ContinentsViewModel(get()) }
                 factory { CountriesViewModel(get()) }
+                factory { CountryViewModel(get()) }
             }
         )
     }

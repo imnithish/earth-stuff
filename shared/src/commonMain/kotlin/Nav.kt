@@ -8,6 +8,8 @@ import screen.continents.ContinentsScreen
 import screen.continents.ContinentsViewModel
 import screen.countries.CountriesScreen
 import screen.countries.CountriesViewModel
+import screen.country.CountryScreen
+import screen.country.CountryViewModel
 
 @Composable
 fun Nav() {
@@ -30,9 +32,31 @@ fun Nav() {
         scene(route = "/countries/{id}?") { backStackEntry ->
             val vm = koinViewModel(CountriesViewModel::class)
             val code: String? = backStackEntry.path<String>("id")
-            CountriesScreen(code = code, viewModel = vm, onBackPress = {
-                navigator.goBack()
-            })
+            CountriesScreen(
+                code = code,
+                viewModel = vm,
+                onCountryClick = {
+                    navigator.navigate("/country/$it")
+                },
+                onBackPress = {
+                    navigator.goBack()
+                }
+            )
+        }
+
+        scene(
+            route = "/country/{code}?",
+            navTransition = NavTransition(),
+        ) { backStackEntry ->
+            val vm = koinViewModel(CountryViewModel::class)
+            val code: String? = backStackEntry.path<String>("code")
+            CountryScreen(
+                code = code,
+                viewModel = vm,
+                onBackPress = {
+                    navigator.goBack()
+                }
+            )
         }
     }
 }

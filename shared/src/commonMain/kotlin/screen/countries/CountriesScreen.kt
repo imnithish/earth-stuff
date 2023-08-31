@@ -35,6 +35,7 @@ import util.UIErrorType
 fun CountriesScreen(
     code: String?,
     viewModel: CountriesViewModel,
+    onCountryClick: (String) -> Unit,
     onBackPress: () -> Unit
 ) {
     LaunchedEffect(Unit) {
@@ -79,6 +80,7 @@ fun CountriesScreen(
                     uiState.countries.forEach {
                         item {
                             CountryCard(code = it.code, name = it.name, emoji = it.emoji) {
+                                onCountryClick(it.code)
                             }
                         }
                     }

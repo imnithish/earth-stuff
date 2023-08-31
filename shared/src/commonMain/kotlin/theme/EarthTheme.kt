@@ -22,14 +22,16 @@ fun EarthTheme(
                 surface = Color.Black,
                 onSurface = Color.White,
                 onPrimary = Color.Black,
-                error= Color.LightGray
+                error= Color.LightGray,
+                primaryVariant = Color.LightGray
             )
         else lightColors(
             primary = Color.Black,
             surface = Color.White,
             onSurface = Color.Black,
             onPrimary = Color.White,
-            error= Color.Blue
+            error= Color.Blue,
+            primaryVariant = Color.LightGray
         ),
         typography = Typography,
         shapes = Shapes(

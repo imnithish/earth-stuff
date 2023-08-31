@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -15,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
@@ -27,7 +29,12 @@ fun StuffTopAppBar(title: String, onNavigateUp: (() -> Unit)? = null) {
             TopAppBar(
                 backgroundColor = MaterialTheme.colors.surface,
                 title = {
-                    Text(title, style = MaterialTheme.typography.h5, textAlign = TextAlign.Center)
+                    Text(
+                        title,
+                        style = MaterialTheme.typography.h6,
+                        textAlign = TextAlign.Center,
+                        overflow = TextOverflow.Ellipsis
+                    )
                 },
                 elevation = 0.dp,
                 navigationIcon = if (onNavigateUp == null) null else ({

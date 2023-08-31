@@ -1,4 +1,4 @@
-package screen.countries
+package screen.country
 
 import com.apollographql.apollo3.exception.ApolloException
 import com.apollographql.apollo3.exception.ApolloNetworkException
@@ -10,35 +10,45 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import moe.tlaster.precompose.viewmodel.ViewModel
 import moe.tlaster.precompose.viewmodel.viewModelScope
-import screen.countries.data.CountriesRepository
-import screen.countries.data.CountriesUIState
+import screen.country.data.CountryRepository
+import screen.country.data.CountryUIState
+import screen.country.data.CurrentBottomSheetContent
 import util.UIErrorType
 
-class CountriesViewModel(
-    private val countriesRepository: CountriesRepository
+class CountryViewModel(
+    private val countryRepository: CountryRepository
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(CountriesUIState())
+    private val _uiState = MutableStateFlow(CountryUIState())
     val uiState = _uiState.asStateFlow()
 
-    fun setup(continentId: String?) = viewModelScope.launch {
+    fun setup(code: String?) = viewModelScope.launch {
         _uiState.update { state ->
             state.copy(
-                continentId = continentId
+                countryCode = code
             )
         }
-        attemptContinentQuery()
+        attemptCountryQuery()
     }
 
-    fun attemptContinentQuery() = viewModelScope.launch {
-        _uiState.value.continentId?.let { continentId ->
+    fun setCurrentBottomSheet(currentBottomSheetContent: CurrentBottomSheetContent) =
+        viewModelScope.launch {
+            _uiState.update { state ->
+                state.copy(
+                    currentBottomSheetContent = currentBottomSheetContent
+                )
+            }
+        }
+
+    fun attemptCountryQuery() = viewModelScope.launch {
+        _uiState.value.countryCode?.let { countryCode ->
             _uiState.update {
                 it.copy(
                     isLoading = true,
                     error = UIErrorType.Nothing
                 )
             }
-            countriesRepository.continentQuery(continentId).toFlow()
+            countryRepository.countryQuery(countryCode).toFlow()
                 .catch { exceptions ->
                     _uiState.update { state ->
                         state.copy(
@@ -50,17 +60,12 @@ class CountriesViewModel(
                     }
                 }.collectLatest { res ->
                     if (!res.hasErrors()) {
-                        val continent = res.data?.continent
-                        val countries = continent?.countries
+                        val data = res.data?.country
                         _uiState.update { state ->
                             state.copy(
                                 isLoading = false,
-                                error = if (countries.isNullOrEmpty()) UIErrorType.Other("API returned empty list") else UIErrorType.Nothing,
-                                countries = countries ?: emptyList(),
-                                continentCodeAndName = Pair(
-                                    continent?.code ?: "",
-                                    continent?.name ?: ""
-                                )
+                                error = if (data == null) UIErrorType.Other("API returned empty stuff") else UIErrorType.Nothing,
+                                data = data
                             )
                         }
                     } else {
@@ -76,7 +81,7 @@ class CountriesViewModel(
             _uiState.update { state ->
                 state.copy(
                     isLoading = false,
-                    error = UIErrorType.Other("Continent code missing")
+                    error = UIErrorType.Other("Country code missing")
                 )
             }
         }
